@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+body {background: #2c3e50;}
+.mat-toolbar {
+    background: #24292e !important;
+}
+.mat-paginator-container {
+  background:  #24292e;
+}
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: slateblue !important;
+}
+.mat-paginator-page-size-label, .mat-paginator-range-label {color: whitesmoke;}
+.mat-select-arrow {
+  color: whitesmoke;
+}
+.mat-paginator-icon { color:#24292e;}
