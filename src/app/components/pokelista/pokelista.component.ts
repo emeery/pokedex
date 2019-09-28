@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PokeService } from './poke.service';
 
 @Component({
   selector: 'app-pokelista',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PokelistaComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private pokeServicio: PokeService
+  ) { }
 
   ngOnInit() {
+    this.getPokemones();
   }
-
+  getPokemones() {
+    this.pokeServicio.getPokemones()
+    .subscribe(e => {
+      console.log(e);
+    })
+  }
 }

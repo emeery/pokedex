@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { HomeComponent } from '../core/home/home.component';
 import { PokelistaComponent } from '../components/pokelista/pokelista.component';
 
-
-
 const rutas: Routes = [
     {
       path: '',
