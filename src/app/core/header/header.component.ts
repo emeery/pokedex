@@ -23,5 +23,23 @@ export class HeaderComponent implements OnInit {
         '../../../assets/pokeball.svg'
       )
     );
+    this.icon.addSvgIcon(
+      'icono-plus',
+      this.dom.bypassSecurityTrustResourceUrl(
+        '../../../assets/plus.svg'
+      )
+    );
+    this.icon.addSvgIcon(
+      'icono-login',
+      this.dom.bypassSecurityTrustResourceUrl(
+        '../../../assets/key.svg'
+      )
+    );
+    this.icon.addSvgIcon(
+      'icono-logout',
+      this.dom.bypassSecurityTrustResourceUrl(
+        '../../../assets/logout.svg'
+      )
+    );
   }
 }

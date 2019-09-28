@@ -7,7 +7,7 @@ const pokemonEsquema = mongoose.Schema({
   },
   tipo: {
     type: Array,
-    'defaul': [
+    'default': [
       'veneno',
       'volador',
       'agua',

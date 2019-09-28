@@ -1,0 +1,79 @@
+<mat-card>
+  <form [formGroup]="forma" (ngSubmit)="addPokemon()">
+    <mat-form-field>
+      <input matInput formControlName="nombre" required placeholder="Nombre Pokemon" />
+      <mat-error *ngIf="forma.get('nombre').invalid"
+        >necesitamos un nombre</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="tipo" (selectionChange)="onChange($event)">
+          <mat-option *ngFor="let t of tipos;" [value]="t.value">
+            {{t.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    <div>
+        <button mat-stroked-button type="button" (click)="archivoPicker.click()">
+          Pick Imagen
+        </button>
+        <input
+        type="file"
+        #archivoPicker (change)="imagenSeleccion($event)"
+        />
+    </div>
+    <div class="imagen-prev"
+      *ngIf="imagenPrev !== '' && imagenPrev && forma.get('imagen').valid ">
+        <img [src]="imagenPrev" [alt]="forma.value.nombre">
+    </div>
+    <mat-checkbox formControlName="activo">Activo</mat-checkbox>
+    <button color="primary" type="submit" mat-flat-button>{{ boton }}</button>
+  </form>
+</mat-card>
+<!-- <mat-card>
+    <mat-spinner *ngIf="spinner"></mat-spinner>
+    <form [formGroup]="forma" (ngSubmit)="addPerfill()" *ngIf="!spinner">
+      <mat-form-field>
+        <input matInput formControlName="nombre" required placeholder="Nombre" />
+        <mat-error *ngIf="forma.get('nombre').invalid"
+          >necesitamos un nombre</mat-error
+        >
+      </mat-form-field>
+
+      <div>
+        <button mat-stroked-button type="button" (click)="archivoPicker.click()">
+          Pick Imagen
+        </button>
+        <input
+        type="file"
+        #archivoPicker (change)="imagenSeleccion($event)"
+        />
+      </div>
+      <div class="imagen-prev"
+      *ngIf="imagenPrev !== '' && imagenPrev && forma.get('imagen').valid ">
+        <img [src]="imagenPrev" [alt]="forma.value.nombre">
+      </div>
+      <mat-form-field>
+        <input matInput formControlName="correo" required placeholder="Correo" />
+        <mat-error *ngIf="forma.get('correo').invalid"
+          >necesitamos un correo valido</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea
+          matInput
+          formControlName="mensaje"
+          required
+          placeholder="Mensaje"
+        ></textarea>
+        <mat-error *ngIf="forma.get('mensaje').invalid"
+          >necesitamos un mensaje</mat-error
+        >
+      </mat-form-field>
+
+      <button color="primary" type="submit" mat-flat-button>{{ boton }}</button>
+    </form>
+  </mat-card>
+   -->

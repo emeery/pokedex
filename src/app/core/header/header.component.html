@@ -6,14 +6,31 @@
   </span>
   <span class="spacer"></span>
   <ul>
+    <li >
+      <a
+      mat-button
+      routerLink="/crear"
+      [routerLinkActiveOptions]="{exact: true}"
+      routerLinkActive="mat-accent">
+      <mat-icon svgIcon="icono-plus"></mat-icon>
+      </a>
+    </li>
+    <li>
+      <a
+      mat-button
+
+      routerLinkActive="mat-accent">
+      <mat-icon svgIcon="icono-login"></mat-icon>
+      </a>
+    </li>
     <li>
         <a
         mat-button
-        routerLink="/pokemones"
+
         routerLinkActive="mat-accent">
-        L
+        <mat-icon svgIcon="icono-logout"></mat-icon>
         </a>
       </li>
-      <li></li>
+    <li></li>
   </ul>
 </mat-toolbar>
