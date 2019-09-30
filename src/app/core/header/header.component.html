@@ -1,7 +1,8 @@
 <mat-toolbar color="primary">
   <span>
-    <a routerLink="/">
-      <mat-icon svgIcon="icono-pokeball"></mat-icon>
+    <a  id="poke"routerLink="/">
+      <!-- <mat-icon svgIcon="icono-pokeball"></mat-icon> -->
+      <img style="width: 30px;height:30px" [src]="pokeball" />
     </a>
   </span>
   <span class="spacer"></span>
@@ -18,9 +19,9 @@
     <li>
       <a
       mat-button
-
+      routerLink="/pokemones"
       routerLinkActive="mat-accent">
-      <mat-icon svgIcon="icono-login"></mat-icon>
+      <img style="width: 30px;height:30px" [src]="pokebag" />
       </a>
     </li>
     <li>

@@ -24,7 +24,7 @@ const almacen = multer.diskStorage({
   }
 });
 
-router.post('', (req, res) => {
+router.post('', async (req, res) => {
    res.status(200).json({poke:'pokm'})
 });
 

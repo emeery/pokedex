@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Pokemon } from '../models/pokemon.model';
 import { mimeTipo } from './mime.validator';
+import { PokeService } from '../pokelista/poke.service';
 
 @Component({
   selector: 'app-pokeadd',
@@ -11,17 +12,17 @@ import { mimeTipo } from './mime.validator';
 
 export class PokeAddComponent implements OnInit {
   pokemon: Pokemon;
-  forma: FormGroup;
+  formaPoke: FormGroup;
   tipo: string;
   tipos = [
-    {value: 'volador', viewValue: 'Volador'},
-    {value: 'veneno', viewValue: 'Veneno'},
-    {value: 'tierra', viewValue: 'Tierra'},
-    {value: 'roca', viewValue: 'Roca'},
-    {value: 'psiquico', viewValue: 'Psiquico'},
-    {value: 'fuego', viewValue: 'Fuego'},
-    {value: 'agua', viewValue: 'Agua'},
-    {value: 'planta', viewValue: 'Planta'}
+    {value: '../../../assets/images/png/drop.png', viewValue: 'Agua'},
+    {value: '../../../assets/images/png/leaf.png', viewValue: 'Planta'},
+    {value: '../../../assets/images/png/ground.png', viewValue: 'Tierra'},
+    {value: '../../../assets/images/png/fire.png', viewValue: 'Fuego'},
+    {value: '../../../assets/images/png/wind.png', viewValue: 'Volador'},
+    {value: '../../../assets/images/png/stone.png', viewValue: 'Roca'},
+    {value: '../../../assets/images/png/flash.png', viewValue: 'electrico'},
+    {value: '../../../assets/images/png/psychic.png', viewValue: 'Psiquico'},
   ];
   boton = 'ENVIAR';
   // private modo = 'crear';
@@ -29,33 +30,29 @@ export class PokeAddComponent implements OnInit {
   // spinner = false;
   imagenPrev: string;
   constructor(
-
+    private pokeServicio: PokeService
   ) { }
   ngOnInit() {
     this.initForma();
   }
   initForma() {
-      this.forma = new FormGroup({
-        nombre: new FormControl(null , {
-          validators: [Validators.required, Validators.minLength(3)]}),
-        tipo: new FormControl(null , {
-          validators: [Validators.required]}),
-        imagen: new FormControl(null, {
-          validators: [Validators.required], asyncValidators: [mimeTipo] }),
-        activo: new FormControl(null , {
-          validators: [Validators.required]}),
-      });
+    this.formaPoke = new FormGroup({
+      nombre: new FormControl(null , {
+        validators: [Validators.required, Validators.minLength(3)]}),
+      tipo: new FormControl(null , {
+        validators: [Validators.required]}),
+      imagen: new FormControl(null, {
+        validators: [Validators.required], asyncValidators: [mimeTipo] }),
+    });
   }
   addPokemon() {
-    console.log(this.forma.value);
+    this.pokeServicio.addPokemon(this.formaPoke.value);
   }
-  onChange(deviceValue) {
-    console.log(deviceValue.value);
-  }
+  // selectionChange //
   imagenSeleccion(event: Event) {
     const img = (event.target as HTMLInputElement).files[0];
-    this.forma.patchValue({imagen: img }); // apunta a un solo control
-    this.forma.get('imagen').updateValueAndValidity();
+    this.formaPoke.patchValue({imagen: img }); // apunta a un solo control
+    this.formaPoke.get('imagen').updateValueAndValidity();
     const lector = new FileReader();
     lector.onload = () => { this.imagenPrev = lector.result as string; };
     lector.readAsDataURL(img);

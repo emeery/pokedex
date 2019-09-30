@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Pokemon } from '../models/pokemon.model';
 import { PokeService } from './poke.service';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokelista',
@@ -7,18 +10,22 @@ import { PokeService } from './poke.service';
   styleUrls: ['./pokelista.component.scss']
 })
 export class PokelistaComponent implements OnInit {
-
+  pokemon: Pokemon[];
+  cols = ['id', 'nombre', 'tipo', 'imagen'];
+  dataSource;
+  subs: Subscription;
   constructor(
-    private pokeServicio: PokeService
-  ) { }
+    private pokeServicio: PokeService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    this.subs = this.pokeServicio.pokemonObserva
+    .subscribe((poke: Pokemon[]) => { console.log(poke); });
     this.getPokemones();
   }
   getPokemones() {
-    this.pokeServicio.getPokemones()
-    .subscribe(e => {
-      console.log(e);
-    })
+    this.pokemon = this.pokeServicio.getPokemones();
+    this.dataSource = this.pokemon;
   }
 }

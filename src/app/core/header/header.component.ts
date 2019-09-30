@@ -8,15 +8,22 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  pokeball: string;
+  pokebag: string;
   constructor(
     private icon: MatIconRegistry,
     private dom: DomSanitizer
-  ) { this.loadIcono(); }
+  ) {}
 
   ngOnInit() {
+    this.loadIconos();
+    this.loadPng();
   }
-  loadIcono() {
+  loadPng() {
+    this.pokeball = '../../../assets/images/png/pokeball.png';
+    this.pokebag = '../../../assets/images/png/pokebag.png';
+  }
+  loadIconos() {
     this.icon.addSvgIcon(
       'icono-pokeball',
       this.dom.bypassSecurityTrustResourceUrl(
@@ -30,11 +37,16 @@ export class HeaderComponent implements OnInit {
       )
     );
     this.icon.addSvgIcon(
-      'icono-login',
+      'icono-pokedex',
       this.dom.bypassSecurityTrustResourceUrl(
-        '../../../assets/key.svg'
-      )
+        '../../../assets/images/svg/pokedex.svg')
     );
+    // this.icon.addSvgIcon(
+    //   'icono-login',
+    //   this.dom.bypassSecurityTrustResourceUrl(
+    //     '../../../assets/key.svg'
+    //   )
+    // );
     this.icon.addSvgIcon(
       'icono-logout',
       this.dom.bypassSecurityTrustResourceUrl(
