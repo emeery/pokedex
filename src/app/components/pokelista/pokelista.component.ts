@@ -15,8 +15,7 @@ export class PokelistaComponent implements OnInit {
   dataSource;
   subs: Subscription;
   constructor(
-    private pokeServicio: PokeService,
-    private router: Router
+    private pokeServicio: PokeService
   ) {}
 
   ngOnInit() {

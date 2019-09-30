@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,8 @@ export class HeaderComponent implements OnInit {
   pokebag: string;
   constructor(
     private icon: MatIconRegistry,
-    private dom: DomSanitizer
+    private dom: DomSanitizer,
+    public router: Router
   ) {}
 
   ngOnInit() {

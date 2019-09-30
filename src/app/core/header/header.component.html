@@ -7,7 +7,7 @@
   </span>
   <span class="spacer"></span>
   <ul>
-    <li >
+    <li  *ngIf="!router.url.includes('/welcome')">
       <a
       mat-button
       routerLink="/crear"
@@ -16,7 +16,7 @@
       <mat-icon svgIcon="icono-plus"></mat-icon>
       </a>
     </li>
-    <li>
+    <li *ngIf="!router.url.includes('/welcome')">
       <a
       mat-button
       routerLink="/pokemones"
@@ -24,11 +24,11 @@
       <img style="width: 30px;height:30px" [src]="pokebag" />
       </a>
     </li>
-    <li>
+    <li *ngIf="!router.url.includes('/welcome')">
         <a
         mat-button
-
-        routerLinkActive="mat-accent">
+        routerLink="/"
+        >
         <mat-icon svgIcon="icono-logout"></mat-icon>
         </a>
       </li>

@@ -7,6 +7,11 @@ import { PokeAddComponent } from '../components/pokeadd/pokeadd.component';
 const rutas: Routes = [
   {
     path: '',
+    redirectTo: '/welcome',
+    pathMatch: 'full'
+  },
+  {
+    path: 'welcome',
     component: HomeComponent
   },
   {
@@ -17,6 +22,7 @@ const rutas: Routes = [
     path: 'crear',
     component: PokeAddComponent
   },
+  { path: '**', redirectTo: '/welcome', },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(rutas, {preloadingStrategy: PreloadAllModules})],
