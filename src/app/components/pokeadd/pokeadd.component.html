@@ -1,20 +1,28 @@
 <mat-card>
   <form [formGroup]="formaPoke" (ngSubmit)="addPokemon()">
-    <mat-form-field>
+    <!-- <mat-form-field>
       <input matInput formControlName="nombre" required placeholder="Nombre Pokemon" />
       <mat-error *ngIf="formaPoke.get('nombre').invalid"
         >necesitamos un nombre</mat-error
       >
+    </mat-form-field> -->
+    <mat-form-field>
+      <mat-label>Pokemon</mat-label>
+      <mat-select formControlName="pokemon" >
+        <mat-option *ngFor="let t of pokemon;" [value]="t.value">
+          {{t.valorVisto}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field>
-        <mat-label>Tipo</mat-label>
-        <mat-select formControlName="tipo" >
-          <mat-option *ngFor="let t of tipos;" [value]="t.value">
-            {{t.viewValue}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    <div>
+      <mat-label>Tipo</mat-label>
+      <mat-select formControlName="tipo" >
+        <mat-option *ngFor="let t of tipos;" [value]="t.value">
+          {{t.valorVisto}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- <div>
         <button mat-stroked-button type="button" (click)="archivoPicker.click()">
           Pick Imagen
         </button>
@@ -22,11 +30,11 @@
         type="file"
         #archivoPicker (change)="imagenSeleccion($event)"
         />
-    </div>
-    <div class="imagen-prev"
+    </div> -->
+    <!-- <div class="imagen-prev"
       *ngIf="imagenPrev !== '' && imagenPrev && formaPoke.get('imagen').valid ">
         <img [src]="imagenPrev" [alt]="formaPoke.value.nombre">
-    </div>
+    </div> -->
     <!-- <mat-checkbox formControlName="activo">Activo</mat-checkbox> -->
     <button color="primary" type="submit" mat-flat-button>{{ boton }}</button>
   </form>

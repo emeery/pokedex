@@ -22,10 +22,10 @@ export class PokelistaComponent implements OnInit {
   ngOnInit() {
     this.subs = this.pokeServicio.pokemonObserva
     .subscribe((poke: Pokemon[]) => { console.log(poke); });
-    this.getPokemones();
+    this.getPokemon();
   }
-  getPokemones() {
-    this.pokemon = this.pokeServicio.getPokemones();
+  getPokemon() {
+    this.pokemon = this.pokeServicio.getPokemon();
     this.dataSource = this.pokemon;
   }
 }
