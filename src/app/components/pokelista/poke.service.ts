@@ -13,6 +13,7 @@ export class PokeService {
     '../../../assets/images/png/drop.png', // agua
     '../../../assets/images/png/flash.png', // electrico
     '../../../assets/images/png/psychic.png', // psiquico
+    '../../../assets/images/png/flame.png' // fuego
   ];
   pokemonObserva = new Subject<Pokemon[]>();
   private pokemon: Pokemon[] = [
@@ -41,6 +42,7 @@ export class PokeService {
     }
   addPokemon(poke: Pokemon) {
     poke.imagen = '../../../assets/images/png/' + poke.nombre + '.png';
+    console.log(poke.imagen);
     this.pokemon.push(poke);
     this.pokemonObserva.next(this.pokemon.slice());
     this.router.navigate(['/pokemones']);

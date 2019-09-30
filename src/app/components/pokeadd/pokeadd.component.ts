@@ -18,10 +18,10 @@ export class PokeAddComponent implements OnInit {
     {value: '../../../assets/images/png/drop.png', viewValue: 'Agua'},
     {value: '../../../assets/images/png/leaf.png', viewValue: 'Planta'},
     {value: '../../../assets/images/png/ground.png', viewValue: 'Tierra'},
-    {value: '../../../assets/images/png/fire.png', viewValue: 'Fuego'},
+    {value: '../../../assets/images/png/flame.png', viewValue: 'Fuego'},
     {value: '../../../assets/images/png/wind.png', viewValue: 'Volador'},
     {value: '../../../assets/images/png/stone.png', viewValue: 'Roca'},
-    {value: '../../../assets/images/png/flash.png', viewValue: 'electrico'},
+    {value: '../../../assets/images/png/flash.png', viewValue: 'Electrico'},
     {value: '../../../assets/images/png/psychic.png', viewValue: 'Psiquico'},
   ];
   boton = 'ENVIAR';
