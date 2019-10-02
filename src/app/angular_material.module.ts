@@ -1,3 +1,4 @@
+// modulo para importar los componentes Angular Material
 import { NgModule } from '@angular/core';
 import {
   MatInputModule,
@@ -18,7 +19,8 @@ import {
   MatSelectModule,
   MatCheckboxModule,
   MatTableModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatSortModule
 } from '@angular/material';
 
 @NgModule({
@@ -42,7 +44,8 @@ import {
     MatSelectModule,
     MatCheckboxModule,
     MatTableModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSortModule
   ]
 })
 export class AngularMaterialModule {}

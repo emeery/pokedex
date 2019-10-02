@@ -1,11 +1,5 @@
 <mat-card>
   <form [formGroup]="formaPoke" (ngSubmit)="addPokemon()">
-    <!-- <mat-form-field>
-      <input matInput formControlName="nombre" required placeholder="Nombre Pokemon" />
-      <mat-error *ngIf="formaPoke.get('nombre').invalid"
-        >necesitamos un nombre</mat-error
-      >
-    </mat-form-field> -->
     <mat-form-field>
       <mat-label>Pokemon</mat-label>
       <mat-select formControlName="pokemon" >

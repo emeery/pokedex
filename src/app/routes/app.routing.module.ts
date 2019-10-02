@@ -22,7 +22,10 @@ const rutas: Routes = [
     path: 'crear',
     component: PokeAddComponent
   },
-  { path: '**', redirectTo: '/welcome', },
+  {
+    path: '**',
+    redirectTo: '/welcome',
+  },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(rutas, {preloadingStrategy: PreloadAllModules})],
