@@ -20,6 +20,9 @@ export class PokelistaComponent implements OnInit, OnDestroy {
   pokemonPorPagina = 5;
   pokemon: Pokemon[]; // arreglo de tipo Pokemon
   subs: Subscription; // subscripción al observable Pokemon
+  // dialogBoxSettings = {
+
+  // };
   constructor(
     private pokeServicio: PokeService,
     public dlg: MatDialog
@@ -75,7 +78,11 @@ export class PokelistaComponent implements OnInit, OnDestroy {
   }
   openPokemon() {
     this.dlg.open(ModalComponent, {
-      panelClass: 'custom-modal'
+      panelClass: 'custom-modal',
+      height: '300px',
+      width: '500px',
+      disableClose: false,
+      hasBackdrop: true,
     });
   }
   ngOnDestroy() {
