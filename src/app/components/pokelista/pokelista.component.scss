@@ -11,3 +11,7 @@ table {
 td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
   border-bottom-style: none;
 }
+.filter {
+  display: flex;
+  justify-content: space-between;
+}

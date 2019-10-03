@@ -2,8 +2,9 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Pokemon } from '../models/pokemon.model';
 import { PokeService } from './poke.service';
 import { Subscription } from 'rxjs';
-import { MatPaginator, MatTableDataSource} from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatDialog} from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
+import { ModalComponent } from './modal/modal.component';
 @Component({
   selector: 'app-pokelista',
   templateUrl: './pokelista.component.html',
@@ -12,16 +13,17 @@ import { SelectionModel } from '@angular/cdk/collections';
 
 export class PokelistaComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<Pokemon>(); // arreglo de Pokemon
-  cols: string[] = ['select','id', 'nombre', 'tipo', 'imagen']; // columnas tabla lista
+  cols: string[] = ['select', 'id', 'nombre', 'tipo', 'imagen']; // columnas tabla lista
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator; // paginacion Angular Material
   selection = new SelectionModel<Pokemon>(true, []);
-  selectedColumnas: Array<{}> = [];
+  selectedFilas: Array<Pokemon> = [];
   checked = false;
   pokemonPorPagina = 5;
   pokemon: Pokemon[]; // arreglo de tipo Pokemon
   subs: Subscription; // subscripción al observable Pokemon
   constructor(
-    private pokeServicio: PokeService
+    private pokeServicio: PokeService,
+    public dlg: MatDialog
   ) {}
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
@@ -60,8 +62,13 @@ export class PokelistaComponent implements OnInit, OnDestroy {
   }
   store() {
     setTimeout(() => {
-      this.selectedColumnas = this.selection.selected;
-      console.log('columnasSeleccionadas: ', this.selectedColumnas);
+      this.selectedFilas = this.selection.selected;
+      this.pokeServicio.addSeleccion(this.selectedFilas);
+    });
+  }
+  openPokemon() {
+    this.dlg.open(ModalComponent, {
+      panelClass: 'custom-modalito'
     });
   }
   ngOnDestroy() {

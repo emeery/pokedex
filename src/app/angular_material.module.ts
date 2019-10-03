@@ -45,7 +45,7 @@ import {
     MatCheckboxModule,
     MatTableModule,
     MatSlideToggleModule,
-    MatSortModule
+    MatSortModule, //
   ]
 })
 export class AngularMaterialModule {}

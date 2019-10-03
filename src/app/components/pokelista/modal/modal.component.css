@@ -1,0 +1,31 @@
+/* .me {
+  display: flex;
+  justify-content: center;
+}
+.me img {
+  width: 50%;
+} */
+.text {
+  color: lightblue;
+  font-size: 1.1em;
+  text-align: center;
+}
+.text span {
+  font-weight: bold;
+}
+.text a {
+  color:lightcoral;
+}
+@media screen and (max-width:547px) {
+  .me img {
+    width: 40%;
+    height: 40%;
+  }
+}
+.fa-carrot {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.fa-github-alt {color: lightblue;transition: all .2s ease-in-out;}
+.fa-github-alt:hover {color: lightsalmon;transform: scale(1.2);}

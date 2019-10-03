@@ -11,6 +11,8 @@ import { HomeComponent } from './core/home/home.component';
 import { AppRoutingModule } from './routes/app.routing.module';
 import { AngularMaterialModule } from './angular_material.module';
 import { PokeAddComponent } from './components/pokeadd/pokeadd.component';
+import { ModalComponent } from './components/pokelista/modal/modal.component';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { PokeAddComponent } from './components/pokeadd/pokeadd.component';
     HeaderComponent,
     HomeComponent,
     PokeAddComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,15 @@ import { PokeAddComponent } from './components/pokeadd/pokeadd.component';
     AppRoutingModule,
     AngularMaterialModule
   ],
-  providers: [],
+  entryComponents: [
+    ModalComponent
+  ],
+  providers: [
+    {
+      provide: LocationStrategy,
+      useClass: PathLocationStrategy
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

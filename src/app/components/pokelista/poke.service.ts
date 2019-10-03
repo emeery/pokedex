@@ -31,8 +31,8 @@ export class PokeService {
       imagen: '../../../assets/images/png/pokemon/charmander.png'
     },
   ];
+  selectedFilas: Array<Pokemon> = [];
   constructor(
-      // private http: HttpClient,
       private router: Router
     ) { }
   getPokemon() {
@@ -45,5 +45,10 @@ export class PokeService {
     this.pokemonObservable.next(this.pokemon.slice());
     this.router.navigate(['/pokemones']);
   }
-
+  addSeleccion(selec) {
+    this.selectedFilas = selec;
   }
+  getSeleccion() {
+    return this.selectedFilas;
+  }
+}
