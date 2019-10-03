@@ -2,17 +2,17 @@
   <form [formGroup]="formaPoke" (ngSubmit)="addPokemon()">
     <mat-form-field>
       <mat-label>Pokemon</mat-label>
-      <mat-select formControlName="pokemon" >
-        <mat-option *ngFor="let t of pokemon;" [value]="t.value">
-          {{t.valorVisto}}
+      <mat-select formControlName="pokemon">
+        <mat-option *ngFor="let t of pokemon" [value]="t.value">
+          {{ t.valorVisto }}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Tipo</mat-label>
-      <mat-select formControlName="tipo" >
-        <mat-option *ngFor="let t of tipos;" [value]="t.value">
-          {{t.valorVisto}}
+      <mat-select formControlName="tipo">
+        <mat-option *ngFor="let t of tipos" [value]="t.value">
+          {{ t.valorVisto }}
         </mat-option>
       </mat-select>
     </mat-form-field>

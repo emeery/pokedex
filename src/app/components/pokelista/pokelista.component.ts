@@ -12,12 +12,11 @@ import { ModalComponent } from './modal/modal.component';
 })
 
 export class PokelistaComponent implements OnInit, OnDestroy {
-  dataSource = new MatTableDataSource<Pokemon>(); // arreglo de Pokemon
+  dataSource = new MatTableDataSource<Pokemon>(); // arreglo de tipo Tabla/Pokemon
   cols: string[] = ['select', 'id', 'nombre', 'tipo', 'imagen']; // columnas tabla lista
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator; // paginacion Angular Material
   selection = new SelectionModel<Pokemon>(true, []);
   selectedFilas: Array<Pokemon> = [];
-  checked = false;
   pokemonPorPagina = 5;
   pokemon: Pokemon[]; // arreglo de tipo Pokemon
   subs: Subscription; // subscripción al observable Pokemon
@@ -40,23 +39,31 @@ export class PokelistaComponent implements OnInit, OnDestroy {
   makeFiltro(v: string) {
     this.dataSource.filter = v.trim().toLocaleLowerCase();
   }
-  // Selecciona todas las filas si no están todas seleccionadas; de lo contrario, selección clara
+  // Selecciona todas las filas si no están todas seleccionadas
+  // de lo contrario, selección clara
   masterToggle(ref) {
-    // console.log(ref.checked); // true o false
+    // console.log(this.isSomeSelected());
     if (this.isSomeSelected()) {
       this.selection.clear();
-      ref.checked = false;
+      // console.log(ref);
     } else {
+      console.log(ref);
       this.isAllSelected() ?
-      this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
+      this.selection.clear() : this.dataSource.data.forEach(
+        row => {
+          this.selection.select(row);
+          console.log(this.selection.select(row)); // ?
+        }
+      );
     }
   }
   // Si el número de elementos seleccionados coincide con el número total de filas.
   isAllSelected() {
     const numSeleccion = this.selection.selected.length;
-    const numColumnas = this.dataSource.data.length; // columnas
-    return numSeleccion === numColumnas;
+    const numColumnas = this.dataSource.data.length; // longitud arreglo
+    return numSeleccion === numColumnas;  // 4 = true
   }
+  // si alguno esta seleccionado = true
   isSomeSelected() {
     return this.selection.selected.length > 0;
   }
@@ -68,7 +75,7 @@ export class PokelistaComponent implements OnInit, OnDestroy {
   }
   openPokemon() {
     this.dlg.open(ModalComponent, {
-      panelClass: 'custom-modalito'
+      panelClass: 'custom-modal'
     });
   }
   ngOnDestroy() {

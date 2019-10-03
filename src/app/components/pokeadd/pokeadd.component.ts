@@ -11,8 +11,8 @@ import {TIPOS, POKEMON} from '../pokelista/pokejson';
 
 export class PokeAddComponent implements OnInit {
   formaPoke: FormGroup; // formulario
-  tipos = TIPOS;
-  pokemon = POKEMON;
+  tipos = TIPOS;  // pokejson
+  pokemon = POKEMON; // pokejson
   boton = 'ENVIAR';
   constructor(
     private pokeServicio: PokeService

@@ -1,61 +1,78 @@
-
-<mat-card>
-    <div class="filter" >
-        <mat-form-field >
-          <input matInput type="text" (keyup)="makeFiltro($event.target.value)"
-          placeholder="Filtro">
-        </mat-form-field>
-        <button (click)="openPokemon()" color="warn" mat-button>Ver Selección</button>
+<div class="co">
+  <mat-card>
+    <div class="filter">
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          (keyup)="makeFiltro($event.target.value)"
+          placeholder="Filtro"
+        />
+      </mat-form-field>
+      <button (click)="openPokemon()" color="warn" mat-button>
+        Ver Selección
+      </button>
     </div>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-     <!-- Position Column -->
-       <!-- Checkbox Column -->
-       <ng-container matColumnDef="select">
-          <th mat-header-cell *matHeaderCellDef>
-            <mat-checkbox #ref (change)="$event ? masterToggle(ref) : null; store();"
-                          [checked]="selection.hasValue() && isAllSelected()"
-                          [indeterminate]="selection.hasValue() && !isAllSelected()">
-            </mat-checkbox>
-          </th>
-          <td mat-cell *matCellDef="let row">
-            <mat-checkbox (click)="$event.stopPropagation(); store();"
-                          (change)="$event ? selection.toggle(row) : null;isSomeSelected()"
-                          [checked]="selection.isSelected(row)">
-            </mat-checkbox>
-          </td>
-        </ng-container>
-    <ng-container  matColumnDef="id">
-      <th  mat-header-cell *matHeaderCellDef> </th>
-      <td mat-cell *matCellDef="let element; let i = index;">
-
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="nombre">
-      <th  mat-header-cell *matHeaderCellDef> Pokémon </th>
-      <td  mat-cell *matCellDef="let element"> <strong>{{element.pokemon  | titlecase}}</strong> </td>
-    </ng-container>
-
-    <ng-container matColumnDef="tipo">
-      <th style="padding-left: 50px;" mat-header-cell *matHeaderCellDef> Tipo </th>
-      <td mat-cell *matCellDef="let element">
-          <img style= "padding-left: 50px;width: 30px;height:30px" [src]="element.tipo" />
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="imagen">
-        <th mat-header-cell *matHeaderCellDef> Favicon </th>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox
+            #ref
+            (change)="$event ? masterToggle(ref) : null; store()"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+          >
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox
+            (click)="$event.stopPropagation(); store()"
+            (change)="$event ? selection.toggle(row) : null; isSomeSelected()"
+            [checked]="selection.isSelected(row)"
+          >
+          </mat-checkbox>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element; let i = index"></td>
+      </ng-container>
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Pokémon</th>
         <td mat-cell *matCellDef="let element">
-          <img style="padding-left: 50px; width: 30px;height:30px" [src]="element.imagen"  />
+          <strong>{{ element.pokemon | titlecase }}</strong>
         </td>
       </ng-container>
 
-    <mat-header-row *matHeaderRowDef="cols"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: cols;"></mat-row>
-  </table>
-  <mat-paginator
-  [pageSizeOptions]="[1,3,5,10]"
-  [pageSize]="pokemonPorPagina"
-  ></mat-paginator>
+      <ng-container matColumnDef="tipo">
+        <th style="padding-left: 50px;" mat-header-cell *matHeaderCellDef>
+          Tipo
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <img
+            style="padding-left: 50px;width: 30px;height:30px"
+            [src]="element.tipo"
+          />
+        </td>
+      </ng-container>
 
-</mat-card>
+      <ng-container matColumnDef="imagen">
+        <th mat-header-cell *matHeaderCellDef>Favicon</th>
+        <td mat-cell *matCellDef="let element">
+          <img
+            style="padding-left: 50px; width: 30px;height:30px"
+            [src]="element.imagen"
+          />
+        </td>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="cols"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: cols"></mat-row>
+    </table>
+    <mat-paginator
+      [pageSizeOptions]="[1, 3, 5, 10]"
+      [pageSize]="pokemonPorPagina"
+    ></mat-paginator>
+  </mat-card>
+</div>

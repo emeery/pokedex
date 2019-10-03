@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private icon: MatIconRegistry,
     private dom: DomSanitizer,
-    public router: Router
+    public router: Router,
   ) {}
 
   ngOnInit() {

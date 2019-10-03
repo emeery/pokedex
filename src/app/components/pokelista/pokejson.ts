@@ -1,4 +1,4 @@
-// dropdown pokeadd.ts
+// dropdown
 export const TIPOS = [
   {value: 'drop', valorVisto: 'Agua'},
   {value: 'leaf', valorVisto: 'Planta'},
@@ -8,14 +8,14 @@ export const TIPOS = [
   {value: 'psychic', valorVisto: 'Psiquico'},
 ];
 export const POKEMON = [
-  {value: 'snorlax', valorVisto: 'Snorlax'},
-  {value: 'charmander', valorVisto: 'Charmander'},
-  {value: 'psyduck', valorVisto: 'Psyduck'},
-  {value: 'caterpie', valorVisto: 'Caterpie'},
   {value: 'dratini', valorVisto: 'Dratini'},
+  {value: 'pidgey', valorVisto: 'Pidgey'},
+  {value: 'charmander', valorVisto: 'Charmander'},
+  {value: 'caterpie', valorVisto: 'Caterpie'},
+  {value: 'psyduck', valorVisto: 'Psyduck'},
   {value: 'abra', valorVisto: 'Abra'},
   {value: 'bellsprout', valorVisto: 'Bellsprout'},
-  {value: 'pidgey', valorVisto: 'Pidgey'},
+  {value: 'snorlax', valorVisto: 'Snorlax'},
 ];
 
 
