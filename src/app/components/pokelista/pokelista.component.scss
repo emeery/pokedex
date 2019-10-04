@@ -25,9 +25,9 @@ td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
   overflow: auto;
   max-height: 500px;
 }
-.customWidthClass{
-  flex: 0 0 75px;
-}
+// .customWidthClass{
+//   flex: 0 0 75px;
+// }
 
 @media(max-width: 600px) {
   .mobile-label {
