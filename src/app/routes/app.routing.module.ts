@@ -15,7 +15,7 @@ const rutas: Routes = [
     component: HomeComponent
   },
   {
-    path: 'pokemones',
+    path: 'pokemon',
     component: PokelistaComponent
   },
   {
