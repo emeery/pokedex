@@ -36,8 +36,10 @@ export class PokeService {
   // ];
   selectedFilas: Array<Pokemon> = [];
   url = environment.url;
-  imgUrl = environment.urlimg;
-  constructor(private router: Router, private http: HttpClient) {}
+  imgUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
+  constructor(
+    private router: Router,
+    private http: HttpClient) {}
   getP() {
     const get = this.http.get(`${this.url}/pokemon?limit=25`).pipe(
       map(res => {
@@ -57,9 +59,11 @@ export class PokeService {
     return get;
   }
   getIcon(i: number) {
-    console.log(`${this.imgUrl}${i}.png`);
-    // const ee = `${this.imgUrl}${index}.png`;
-    // console.log(ee);
+    const icono = this.imgUrl + i + '.png';
+    return icono;
+  }
+  getOye() {
+    console.log(this.imgUrl)
   }
   // getPokemon() {
   //   return this.pokemon;

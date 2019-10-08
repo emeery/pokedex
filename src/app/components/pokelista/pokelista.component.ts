@@ -39,6 +39,7 @@ export class PokelistaComponent implements OnInit, OnDestroy {
     // .subscribe((poke: Pokemon[]) => {
     //   this.pokemon = poke;
     // });
+    this.pokeServicio.getOye();
   }
   makeFiltro(v: string) {
     this.dataSource.filter = v.trim().toLocaleLowerCase();
