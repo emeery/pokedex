@@ -29,7 +29,7 @@ export class PokeAddComponent implements OnInit {
     });
   }
   addPokemon() { // agrega pokemon al arreglo
-    this.pokeServicio.addPokemon(this.formaPoke.value);
+    // this.pokeServicio.addPokemon(this.formaPoke.value);
   }
 
 }

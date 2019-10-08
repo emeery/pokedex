@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  // url: 'https://pokeapi.co/api/v2' //
+  url: 'https://pokeapi.co/api/v2', //
+  urlimg: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
+  // imgurl: 'https:'
 };
 
 /*

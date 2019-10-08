@@ -20,9 +20,6 @@ export class PokelistaComponent implements OnInit, OnDestroy {
   pokemonPorPagina = 5;
   pokemon: Pokemon[]; // arreglo de tipo Pokemon
   subs: Subscription; // subscripción al observable Pokemon
-  // dialogBoxSettings = {
-
-  // };
   constructor(
     private pokeServicio: PokeService,
     public dlg: MatDialog
@@ -30,14 +27,18 @@ export class PokelistaComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.getPokemon();
+    this.getPo();
+  }
+  getPo() {
+    this.pokeServicio.getP().subscribe(res =>  console.log(res));
   }
   getPokemon() { // lista pokemon
-    this.pokemon = this.pokeServicio.getPokemon();
-    this.dataSource.data = this.pokemon;
-    this.subs = this.pokeServicio.pokemonObservable
-    .subscribe((poke: Pokemon[]) => {
-      this.pokemon = poke;
-    });
+    // this.pokemon = this.pokeServicio.getPokemon();
+    // this.dataSource.data = this.pokemon;
+    // this.subs = this.pokeServicio.pokemonObservable
+    // .subscribe((poke: Pokemon[]) => {
+    //   this.pokemon = poke;
+    // });
   }
   makeFiltro(v: string) {
     this.dataSource.filter = v.trim().toLocaleLowerCase();
