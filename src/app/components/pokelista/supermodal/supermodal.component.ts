@@ -4,10 +4,10 @@ import { PokeService } from '../poke.service';
 
 @Component({
   selector: 'app-modal',
-  templateUrl: './modal.component.html',
+  templateUrl: './supermodal.component.html',
   // styleUrls: ['./modal.component.css']
 })
-export class ModalComponent implements OnInit {
+export class SuperModalComponent implements OnInit {
   // selectedFilas: Array<{}> = [];
   // pokemon: Pokemon[]; //
   constructor(

@@ -34,8 +34,8 @@
                     <th style="padding-right: 50px;" mat-header-cell *matHeaderCellDef>
                         Detalles
                     </th>
-                    <td style="padding-left: 50px;cursor: pointer;" mat-cell *matCellDef="let element">
-                        <img (click)="functioninTypeScript($event.target)" style="width: 30px;height:30px" [src]="superball" />
+                    <td style="padding-left: 50px;cursor: pointer;" mat-cell *matCellDef="let element; let i = index;">
+                        <img (click)="functioninTypeScript($event.target, i);$event.stopPropagation()" style="width: 30px;height:30px" [src]="superball" />
                     </td>
                 </ng-container>
                 <mat-header-row *matHeaderRowDef="cols"></mat-header-row>

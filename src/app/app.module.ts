@@ -11,8 +11,8 @@ import { HomeComponent } from './core/home/home.component';
 import { AppRoutingModule } from './routes/app.routing.module';
 import { AngularMaterialModule } from './angular_material.module';
 import { PokeAddComponent } from './components/pokeadd/pokeadd.component';
-import { ModalComponent } from './components/pokelista/modal/modal.component';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { SuperModalComponent } from './components/pokelista/supermodal/supermodal.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     HeaderComponent,
     HomeComponent,
     PokeAddComponent,
-    ModalComponent
+    SuperModalComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +33,7 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     AngularMaterialModule
   ],
   entryComponents: [
-    ModalComponent
+    SuperModalComponent
   ],
   providers: [
     {

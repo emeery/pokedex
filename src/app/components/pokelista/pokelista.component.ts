@@ -4,7 +4,7 @@ import { PokeService } from './poke.service';
 import { Subscription } from 'rxjs';
 import { MatPaginator, MatTableDataSource, MatDialog} from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
-import { ModalComponent } from './modal/modal.component';
+import { SuperModalComponent } from './supermodal/supermodal.component';
 @Component({
   selector: 'app-pokelista',
   templateUrl: './pokelista.component.html',
@@ -30,9 +30,6 @@ export class PokelistaComponent implements OnInit, OnDestroy {
     this.getPo();
     // this.dataSource.paginator = this.paginator;
   }
-  setImg() {
-
-  }
   getPo() {
     this.pokeServicio.getP().subscribe( res => {
       this.pokemon = res.pokemon;
@@ -43,9 +40,10 @@ export class PokelistaComponent implements OnInit, OnDestroy {
     //   this.pokemo = poke;
     // })
   }
-  functioninTypeScript(image: any) {
+  functioninTypeScript(image: any, i: number) {
     this.superball = image.src;
-    console.log(this.superball);
+    this.openPokemon();
+
     this.superball = (image.src === this.superball) ?
     this.superball = '../../../assets/images/png/up-arrow.png' : this.superball;
     setTimeout(() => {
@@ -53,10 +51,6 @@ export class PokelistaComponent implements OnInit, OnDestroy {
     }, 3000);
 
   }
-  // loadImg() {
-  //   this.superball = '../../../assets/images/png/superball.png';
-  //   this.arrowball = '../../../assets/images/png/up-arrow.png';
-  // }
   getPokemon() { // lista pokemon
     // this.pokemon = this.pokeServicio.getPokemon();
     // this.dataSource.data = this.pokemon;
@@ -104,8 +98,8 @@ export class PokelistaComponent implements OnInit, OnDestroy {
     // });
   }
   openPokemon() {
-    this.dlg.open(ModalComponent, {
-      panelClass: 'custom-modal',
+    this.dlg.open(SuperModalComponent, {
+      panelClass: 'custom-supermodalito',
       height: '300px',
       width: '500px',
       disableClose: false,

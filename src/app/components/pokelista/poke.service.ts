@@ -30,7 +30,8 @@ export class PokeService {
             return {
               pokemon: pokem.name,
               icono: this.getIcon(i + 1),
-              url: pokem.url
+              url: pokem.url,
+              activo: false
             };
           })
         };
