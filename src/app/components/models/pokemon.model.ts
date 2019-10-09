@@ -1,5 +1,5 @@
-export interface Pokemon {
+export interface Pokemoni {
   pokemon: string;
-  tipo: string;
-  imagen: string;
+  icono: string;
+  url: string;
 }

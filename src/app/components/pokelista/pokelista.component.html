@@ -1,20 +1,46 @@
 <div class="container">
-  <mat-card>
-    <div class="filter">
-      <mat-form-field>
-        <input
-          matInput
-          type="text"
-          (keyup)="makeFiltro($event.target.value)"
-          placeholder="Filtro"
-        />
-      </mat-form-field>
-      <button (click)="openPokemon()" color="warn" mat-button>
-        Ver Selección
-      </button>
-    </div>
-    <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-    </table> -->
-  </mat-card>
+    <mat-card>
+        <div class="filter">
+            <mat-form-field>
+                <input matInput type="text" (keyup)="makeFiltro($event.target.value)" placeholder="Filtro" />
+            </mat-form-field>
+            <button color="warn" mat-button>
+            Ver Selección
+            </button>
+        </div>
+        <div class="container">
+            <table mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef>ID</th>
+                    <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+                </ng-container>
+                <ng-container matColumnDef="pokemon">
+                    <th style="padding-right: 50px;" mat-header-cell *matHeaderCellDef>
+                        Pokémon
+                    </th>
+                    <td style="padding-right: 50px;" mat-cell *matCellDef="let element">
+                        <strong>{{ element.pokemon | titlecase }}</strong>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="icono">
+                    <th style="padding-right: 50px;" mat-header-cell *matHeaderCellDef>
+                        Icono
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                        <img class="mobile-label" style="width: 45px;height:45px" [src]="element.icono" />
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="detalles">
+                    <th style="padding-right: 50px;" mat-header-cell *matHeaderCellDef>
+                        Detalles
+                    </th>
+                    <td style="padding-left: 50px;cursor: pointer;" mat-cell *matCellDef="let element">
+                        <img (click)="functioninTypeScript($event.target)" style="width: 30px;height:30px" [src]="superball" />
+                    </td>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="cols"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: cols"></mat-row>
+            </table>
+        </div>
+    </mat-card>
 </div>

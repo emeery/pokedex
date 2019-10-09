@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Pokemon } from '../models/pokemon.model';
+import { Pokemoni } from '../models/pokemon.model';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
@@ -10,47 +10,27 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class PokeService {
-  pokemonObservable = new Subject<Pokemon[]>();
-  // private pokemon: Pokemon[] = [
-  //   // arreglo estático de pokemon
-  //   {
-  //     pokemon: "squirtle",
-  //     tipo: "../../../assets/images/png/tipos/drop.png",
-  //     imagen: "../../../assets/images/png/pokemon/squirtle.png"
-  //   },
-  //   {
-  //     pokemon: " pikachu",
-  //     tipo: "../../../assets/images/png/tipos/flash.png",
-  //     imagen: "../../../assets/images/png/pokemon/pikachu.png"
-  //   },
-  //   {
-  //     pokemon: "mew",
-  //     tipo: "../../../assets/images/png/tipos/psychic.png",
-  //     imagen: "../../../assets/images/png/pokemon/mew.png"
-  //   },
-  //   {
-  //     pokemon: "charmander",
-  //     tipo: "../../../assets/images/png/tipos/flame.png",
-  //     imagen: "../../../assets/images/png/pokemon/charmander.png"
-  //   }
-  // ];
-  selectedFilas: Array<Pokemon> = [];
+  // pokemonObservable = new Subject<Pokemon[]>();
+  private pokemon: Pokemoni[] = [];
+  // selectedFilas: Array<Pokemon> = [];
   url = environment.url;
   imgUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
   constructor(
     private router: Router,
     private http: HttpClient) {}
   getP() {
-    const get = this.http.get(`${this.url}/pokemon?limit=25`).pipe(
+    const get = this.http.get(`${this.url}/pokemon?limit=20`).pipe(
       map(res => {
+        console.log('res', res);
         return res[`results`];
       }),
       map(pk => {
         return {
-          pokemon: pk.map((poke, i) => {
+          pokemon: pk.map((pokem, i) => {
             return {
-              pokemon: poke.name,
+              pokemon: pokem.name,
               icono: this.getIcon(i + 1),
+              url: pokem.url
             };
           })
         };
@@ -59,12 +39,9 @@ export class PokeService {
     return get;
   }
   getIcon(i: number) {
-    const icono = this.imgUrl + i + '.png';
-    return icono;
+    return this.imgUrl + i + '.png';
   }
-  getOye() {
-    console.log(this.imgUrl)
-  }
+
   // getPokemon() {
   //   return this.pokemon;
   // }
@@ -76,9 +53,9 @@ export class PokeService {
   //   this.router.navigate(["/pokemon"]);
   // }
   addSeleccion(selec) {
-    this.selectedFilas = selec;
+    // this.selectedFilas = selec;
   }
   getSeleccion() {
-    return this.selectedFilas;
+    // return this.selectedFilas;
   }
 }
