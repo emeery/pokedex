@@ -28,10 +28,9 @@ export class PokelistaComponent implements OnInit, OnDestroy {
   ) {}
   ngOnInit() {
     this.getPo();
-    // this.dataSource.paginator = this.paginator;
   }
   getPo() {
-    this.pokeServicio.getP().subscribe( res => {
+    this.pokeServicio.getP().subscribe( (res) => {
       this.pokemon = res.pokemon;
       console.log(this.pokemon);
       this.dataSource.data = this.pokemon;
@@ -40,18 +39,10 @@ export class PokelistaComponent implements OnInit, OnDestroy {
     //   this.pokemo = poke;
     // })
   }
-  functioninTypeScript(image: any, i: number) {
-    this.superball = image.src;
+  getPokeD(i: number) {
+    const index = i + 1;
+    this.pokeServicio.setPokeDetails(index);
     this.openPokemon();
-
-    this.superball = (image.src === this.superball) ?
-    this.superball = '../../../assets/images/png/up-arrow.png' : this.superball;
-    setTimeout(() => {
-      this.superball = '../../../assets/images/png/superball.png';
-    }, 3000);
-
-  }
-  getPokemon() { // lista pokemon
     // this.pokemon = this.pokeServicio.getPokemon();
     // this.dataSource.data = this.pokemon;
     // this.subs = this.pokeServicio.pokemonObservable

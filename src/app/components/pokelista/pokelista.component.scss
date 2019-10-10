@@ -24,15 +24,24 @@ th.mat-header-cell {
 .container {
     display: flex;
     flex-direction: column;
-    // max-height: 500px;
-    // min-width: 300px;
-}
-
-.mat-table {
-    overflow: auto;
     max-height: 500px;
+    min-width: 300px;
 }
 
+#superball img {
+    width: 30px;
+    height: 30px
+}
+
+#superball img :hover {
+    width: 40%;
+    height: 40%;
+}
+
+// .mat-table {
+//     overflow: auto;
+//     max-height: 500px;
+// }
 .mat-row:hover {
     background-color: #e5e7e9;
 }

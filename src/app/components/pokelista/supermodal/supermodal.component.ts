@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PokeService } from '../poke.service';
+import { Pokemoni } from '../../models/pokemon.model';
 // import { Pokemon } from '../../models/pokemon.model';
 
 @Component({
@@ -9,14 +10,23 @@ import { PokeService } from '../poke.service';
 })
 export class SuperModalComponent implements OnInit {
   // selectedFilas: Array<{}> = [];
-  // pokemon: Pokemon[]; //
+  pokemon;
+  index: number;
   constructor(
     private pokeServicio: PokeService
   ) {}
   ngOnInit() {
-    this.getFilas();
+    this.getI();
+    this.getDetails();
   }
-  getFilas() {
-    // this.pokemon = this.pokeServicio.getSeleccion();
+  getI() {
+    this.index = this.pokeServicio.getIndex();
+  }
+  getDetails() {
+    this.pokemon = this.pokeServicio.setPokeDetails(this.index)
+    .subscribe(poke => {
+      this.pokemon = poke;
+      console.log(this.pokemon);
+    });
   }
 }
