@@ -23,7 +23,6 @@ export class PokelistaComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, {static: true}) paginacion: MatPaginator;
   // selection = new SelectionModel<Pokemon>(true, []);
   // selectedFilas: Array<Pokemon> = [];
-  // pokemonPorPagina = 5;
   // pokemon: Pokemon[]; // arreglo de tipo Pokemon
   // subs: Subscription; // subscripción al observable Pokemon
   constructor(
@@ -39,7 +38,6 @@ export class PokelistaComponent implements OnInit, OnDestroy {
     this.pokeServicio.getP().subscribe( (res) => {
       this.pokemon = res.pokemon;
       this.totalPoke = this.pokemon.length;
-      console.log(this.totalPoke);
       this.dataSource.data = this.pokemon;
       // setTimeout(() => {  });
     });
@@ -56,8 +54,7 @@ export class PokelistaComponent implements OnInit, OnDestroy {
     this.pokePorPagina = paginaD.pageSize;
     this.paginaActual = paginaD.pageIndex + 1;
   }
-  // Selecciona todas las filas si no están todas seleccionadas
-  // de lo contrario, selección clara
+
   masterToggle(ref) {
     // console.log(this.isSomeSelected());
     // if (this.isSomeSelected()) {
