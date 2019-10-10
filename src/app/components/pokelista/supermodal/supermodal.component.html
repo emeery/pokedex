@@ -1,11 +1,14 @@
 <div class="custom-supermodalito">
     <mat-card>
-        jeje
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title> <strong>{{ nombre | titlecase }}</strong> </mat-card-title>
+            <img mat-card-image style="width:150px;height:150px;" [src]="avatar" alt="pokemon" />
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                {{ descripcion }}
+            </p>
+        </mat-card-content>
     </mat-card>
 </div>
-
-<ng-template #notFirst>
-    <p>
-        Selecciona un Pokemon
-    </p>
-</ng-template>

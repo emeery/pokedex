@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PokeService } from '../poke.service';
 import { Pokemoni } from '../../models/pokemon.model';
-// import { Pokemon } from '../../models/pokemon.model';
+import { map, retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-modal',
@@ -10,23 +10,35 @@ import { Pokemoni } from '../../models/pokemon.model';
 })
 export class SuperModalComponent implements OnInit {
   // selectedFilas: Array<{}> = [];
-  pokemon;
+  pokemon: Pokemoni[];
+  nombre: string;
+  avatar: string;
   index: number;
+  descripcion: [];
   constructor(
     private pokeServicio: PokeService
   ) {}
   ngOnInit() {
     this.getI();
     this.getDetails();
+    this.getDes();
   }
   getI() {
     this.index = this.pokeServicio.getIndex();
   }
-  getDetails() {
-    this.pokemon = this.pokeServicio.setPokeDetails(this.index)
+  getDes() {
+    this.pokeServicio.getDescription(this.index)
     .subscribe(poke => {
-      this.pokemon = poke;
-      console.log(this.pokemon);
+      this.descripcion = poke[`flavor_text_entries`][3][`flavor_text`];
+    });
+  }
+  getDetails() {
+    this.pokeServicio.setPokeDetails(this.index)
+    .pipe(map(res => res ))
+    .subscribe(poke => {
+      console.log('jiji', poke);
+      this.nombre = poke[`name`];
+      this.avatar = poke[`sprites`].front_default;
     });
   }
 }

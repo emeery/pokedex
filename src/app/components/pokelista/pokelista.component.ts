@@ -32,24 +32,13 @@ export class PokelistaComponent implements OnInit, OnDestroy {
   getPo() {
     this.pokeServicio.getP().subscribe( (res) => {
       this.pokemon = res.pokemon;
-      console.log(this.pokemon);
       this.dataSource.data = this.pokemon;
-     });
-    // this.pokeServicio.getP().subscribe((poke: Pokemoni[]) => {
-    //   this.pokemo = poke;
-    // })
+    });
   }
   getPokeD(i: number) {
     const index = i + 1;
     this.pokeServicio.setPokeDetails(index);
     this.openPokemon();
-    // this.pokemon = this.pokeServicio.getPokemon();
-    // this.dataSource.data = this.pokemon;
-    // this.subs = this.pokeServicio.pokemonObservable
-    // .subscribe((poke: Pokemon[]) => {
-    //   this.pokemon = poke;
-    // });
-
   }
   makeFiltro(v: string) {
     // this.dataSource.filter = v.trim().toLocaleLowerCase();

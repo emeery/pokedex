@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +20,9 @@ export class PokeService {
     private router: Router,
     private http: HttpClient) {}
   getP() {
-    const get = this.http.get(`${this.url}/pokemon?limit=20`).pipe(
+    const get = this.http.get(`${this.url}/pokemon?limit=20`)
+    .pipe(
       map(res => {
-        console.log('res', res);
         return res[`results`];
       }),
       map(pk => {
@@ -39,24 +39,29 @@ export class PokeService {
     );
     return get;
   }
+  getDescription(i: number) {
+
+    const des = this.http.get(`${this.url}/pokemon-species/${i}`)
+    .pipe(
+      map(poke => {
+        return poke;
+      })
+    );
+    return des;
+  }
   getIcon(i: number) {
     return this.imgUrl + i + '.png';
   }
   setPokeDetails(i: number) {
     this.index = i;
-    const details = this.http.get(`${this.url}/pokemon/${i}`).pipe(
+    const details = this.http.get(`${this.url}/pokemon/${i}`)
+    .pipe(
       map(poke => poke)
     );
     return details;
   }
   getIndex() {
     return this.index;
-  }
-  // getPokeDetails(poke) {
-  //   return poke;
-  // }
-  getPokemon() {
-    return this.pokemon;
   }
   // addPokemon(poke: Pokemon) {
   //   poke.imagen = "../../../assets/images/png/pokemon/" + poke.pokemon + ".png";
