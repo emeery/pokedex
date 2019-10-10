@@ -1,13 +1,13 @@
 <mat-toolbar color="primary">
-  <span>
+    <span>
     <a id="poke" routerLink="/">
       <!-- <mat-icon svgIcon="icono-pokeball"></mat-icon> -->
       <img style="width: 30px;height:30px" [src]="pokeball" />
     </a>
   </span>
-  <span class="spacer"></span>
-  <ul>
-    <li *ngIf="!router.url.includes('/welcome')">
+    <span class="spacer"></span>
+    <ul>
+        <!-- <li *ngIf="!router.url.includes('/welcome')">
       <a
         mat-button
         routerLink="/crear"
@@ -16,17 +16,17 @@
       >
         <mat-icon svgIcon="icono-plus"></mat-icon>
       </a>
-    </li>
-    <li *ngIf="!router.url.includes('/welcome')">
-      <a mat-button routerLink="/pokemon" routerLinkActive="mat-accent">
-        <img style="width: 30px;height:30px" [src]="pokebag" />
-      </a>
-    </li>
-    <li *ngIf="!router.url.includes('/welcome')">
-      <a mat-button routerLink="/">
-        <mat-icon svgIcon="icono-logout"></mat-icon>
-      </a>
-    </li>
-    <li></li>
-  </ul>
+    </li> -->
+        <li *ngIf="!router.url.includes('/welcome')">
+            <a mat-button routerLink="/pokemon" routerLinkActive="mat-accent">
+                <img style="width: 30px;height:30px" [src]="pokebag" />
+            </a>
+        </li>
+        <li *ngIf="!router.url.includes('/welcome')">
+            <a mat-button routerLink="/">
+                <mat-icon svgIcon="icono-logout"></mat-icon>
+            </a>
+        </li>
+        <li></li>
+    </ul>
 </mat-toolbar>

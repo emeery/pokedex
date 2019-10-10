@@ -13,6 +13,7 @@ export class SuperModalComponent implements OnInit {
   pokemon: Pokemoni[];
   nombre: string;
   avatar: string;
+
   index: number;
   descripcion: [];
   constructor(
