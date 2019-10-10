@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Pokemoni } from '../models/pokemon.model';
 import { PokeService } from './poke.service';
 import { Subscription } from 'rxjs';
-import { MatPaginator, MatTableDataSource, MatDialog} from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatDialog, PageEvent} from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { SuperModalComponent } from './supermodal/supermodal.component';
 @Component({
@@ -16,7 +16,11 @@ export class PokelistaComponent implements OnInit, OnDestroy {
   cols: string[] = ['id', 'pokemon', 'icono', 'detalles']; // columnas tabla lista
   pokemon: Pokemoni[] = [];
   superball = '../../../assets/images/png/superball.png';
-  // @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator; // paginacion Angular Material
+  indicePagina = [3, 5, 10];
+  totalPoke: number;
+  pokePorPagina = 5;
+  paginaActual = 1;
+  @ViewChild(MatPaginator, {static: true}) paginacion: MatPaginator;
   // selection = new SelectionModel<Pokemon>(true, []);
   // selectedFilas: Array<Pokemon> = [];
   // pokemonPorPagina = 5;
@@ -27,12 +31,17 @@ export class PokelistaComponent implements OnInit, OnDestroy {
     public dlg: MatDialog
   ) {}
   ngOnInit() {
+    this.dataSource.paginator = this.paginacion;
+    this.dataSource.paginator._intl.itemsPerPageLabel = 'Pokémon por Pagina';
     this.getPo();
   }
   getPo() {
     this.pokeServicio.getP().subscribe( (res) => {
       this.pokemon = res.pokemon;
+      this.totalPoke = this.pokemon.length;
+      console.log(this.totalPoke);
       this.dataSource.data = this.pokemon;
+      // setTimeout(() => {  });
     });
   }
   getPokeD(i: number) {
@@ -41,7 +50,11 @@ export class PokelistaComponent implements OnInit, OnDestroy {
     this.openPokemon();
   }
   makeFiltro(v: string) {
-    // this.dataSource.filter = v.trim().toLocaleLowerCase();
+    this.dataSource.filter = v.trim().toLocaleLowerCase();
+  }
+  onChangePagina(paginaD: PageEvent) {
+    this.pokePorPagina = paginaD.pageSize;
+    this.paginaActual = paginaD.pageIndex + 1;
   }
   // Selecciona todas las filas si no están todas seleccionadas
   // de lo contrario, selección clara

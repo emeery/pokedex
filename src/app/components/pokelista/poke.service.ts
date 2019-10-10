@@ -40,7 +40,6 @@ export class PokeService {
     return get;
   }
   getDescription(i: number) {
-
     const des = this.http.get(`${this.url}/pokemon-species/${i}`)
     .pipe(
       map(poke => {

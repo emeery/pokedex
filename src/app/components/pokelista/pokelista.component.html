@@ -42,5 +42,7 @@
                 <mat-row *matRowDef="let row; columns: cols"></mat-row>
             </table>
         </div>
+        <mat-paginator [pageSizeOptions]="indicePagina" [length]="totalPoke" [pageSize]="pokePorPagina"></mat-paginator>
+
     </mat-card>
 </div>
