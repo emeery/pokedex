@@ -20,7 +20,7 @@ export class PokeService {
     private router: Router,
     private http: HttpClient) {}
   getP() {
-    const get = this.http.get(`${this.url}/pokemon?limit=20`)
+    const get = this.http.get(`${this.url}/pokemon?limit=151`) // 1st g.
     .pipe(
       map(res => {
         return res[`results`];
