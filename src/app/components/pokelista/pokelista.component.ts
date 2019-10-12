@@ -1,9 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Pokemoni } from '../models/pokemon.model';
 import { PokeService } from './poke.service';
-import { Subscription } from 'rxjs';
 import { MatPaginator, MatTableDataSource, MatDialog, PageEvent} from '@angular/material';
-import { SelectionModel } from '@angular/cdk/collections';
 import { SuperModalComponent } from './supermodal/supermodal.component';
 @Component({
   selector: 'app-pokelista',
@@ -20,39 +18,41 @@ export class PokelistaComponent implements OnInit, OnDestroy {
   totalPoke: number;
   pokePorPagina = 5;
   paginaActual = 1;
+  index: number;
   @ViewChild(MatPaginator, {static: true}) paginacion: MatPaginator;
-  // selection = new SelectionModel<Pokemon>(true, []);
-  // selectedFilas: Array<Pokemon> = [];
-  // pokemon: Pokemon[]; // arreglo de tipo Pokemon
-  // subs: Subscription; // subscripción al observable Pokemon
+
   constructor(
     private pokeServicio: PokeService,
     public dlg: MatDialog
   ) {}
   ngOnInit() {
+    this.setPag();
+    this.getPo();
+  }
+  setPag() {
     this.dataSource.paginator = this.paginacion;
     this.dataSource.paginator._intl.itemsPerPageLabel = 'Pokémon por Pagina';
-    this.getPo();
   }
   getPo() {
     this.pokeServicio.getP().subscribe( (res) => {
       this.pokemon = res.pokemon;
       this.totalPoke = this.pokemon.length;
       this.dataSource.data = this.pokemon;
+      this.dataSource.paginator = this.paginacion;
       // setTimeout(() => {  });
     });
   }
   getPokeD(i: number) {
-    const index = i + 1;
-    this.pokeServicio.setPokeDetails(index);
+    this.index = i;
+    this.pokeServicio.setPokeDetails(this.index);
     this.openPokemon();
   }
   makeFiltro(v: string) {
     this.dataSource.filter = v.trim().toLocaleLowerCase();
   }
-  onChangePagina(paginaD: PageEvent) {
-    this.pokePorPagina = paginaD.pageSize;
-    this.paginaActual = paginaD.pageIndex + 1;
+  onChangePagina(pagD: PageEvent) {
+    console.log(pagD);
+    this.pokeServicio.setPokeDetails(this.pokePorPagina);
   }
 
   masterToggle(ref) {
@@ -90,7 +90,7 @@ export class PokelistaComponent implements OnInit, OnDestroy {
   openPokemon() {
     this.dlg.open(SuperModalComponent, {
       panelClass: 'custom-supermodalito',
-      height: '300px',
+      height: '400px',
       width: '500px',
       disableClose: false,
       hasBackdrop: true,
