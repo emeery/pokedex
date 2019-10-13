@@ -36,9 +36,6 @@
                     <th style="padding-right: 50px;" mat-header-cell *matHeaderCellDef>
                         Detalles
                     </th>
-                    <!-- <mat-cell *matCellDef="let item; let j = index">
-                      {{ (j+1) + ( * pokePorPagina) }} -
-                      {{item.description}} </mat-cell> -->
                     <td (click)="getPokeD((i+1) + (pagi.pageIndex * pagi.pageSize ))" id="superball" style="padding-left: 50px;cursor: pointer;" mat-cell *matCellDef="let element; let i = index;">
                         <img [src]="superball" />
                     </td>
@@ -49,7 +46,7 @@
         </div>
     </mat-card>
     <mat-card>
-        <mat-paginator #pagi [pageSizeOptions]="indicePagina" (page)="onChangePagina($event)" [length]="totalPoke" [pageSize]="pokePorPagina"></mat-paginator>
+        <mat-paginator #pagi [pageSizeOptions]="indicePagina" [length]="totalPoke" [pageSize]="pokePorPagina"></mat-paginator>
     </mat-card>
 </div>
 x

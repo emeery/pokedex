@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { Pokemoni } from '../models/pokemon.model';
+import { Pokemon } from '../models/pokemon.model';
 import { PokeService } from './poke.service';
 import { MatPaginator, MatTableDataSource, MatDialog, PageEvent} from '@angular/material';
 import { SuperModalComponent } from './supermodal/supermodal.component';
@@ -10,9 +10,9 @@ import { SuperModalComponent } from './supermodal/supermodal.component';
 })
 
 export class PokelistaComponent implements OnInit, OnDestroy {
-  dataSource = new MatTableDataSource<Pokemoni>(); // arreglo de tipo Tabla/Pokemon
-  cols: string[] = ['id', 'pokemon', 'icono', 'detalles']; // columnas tabla lista
-  pokemon: Pokemoni[] = [];
+  dataSource = new MatTableDataSource<Pokemon>();
+  cols: string[] = ['id', 'pokemon', 'icono', 'detalles'];
+  pokemon: Pokemon[] = [];
   superball = '../../../assets/images/png/superball.png';
   indicePagina = [3, 5, 10];
   totalPoke: number;
@@ -20,7 +20,6 @@ export class PokelistaComponent implements OnInit, OnDestroy {
   paginaActual = 1;
   index: number;
   @ViewChild(MatPaginator, {static: true}) paginacion: MatPaginator;
-
   constructor(
     private pokeServicio: PokeService,
     public dlg: MatDialog
@@ -44,16 +43,17 @@ export class PokelistaComponent implements OnInit, OnDestroy {
   }
   getPokeD(i: number) {
     this.index = i;
-    this.pokeServicio.setPokeDetails(this.index);
+    this.pokeServicio.getPokeDetails(this.index);
     this.openPokemon();
   }
-  makeFiltro(v: string) {
-    this.dataSource.filter = v.trim().toLocaleLowerCase();
+  makeFiltro(s: string) {
+    s = s.trim().toLowerCase();
+    this.dataSource.filter = s;
   }
-  onChangePagina(pagD: PageEvent) {
-    console.log(pagD);
-    this.pokeServicio.setPokeDetails(this.pokePorPagina);
-  }
+  // onChangePagina(pagD: PageEvent) {
+  //   console.log(pagD);
+  //   // this.pokeServicio.getPokeDetails(this.pokePorPagina);
+  // }
 
   masterToggle(ref) {
     // console.log(this.isSomeSelected());

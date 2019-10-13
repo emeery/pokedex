@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Pokemoni } from '../models/pokemon.model';
+import { Pokemon } from '../models/pokemon.model';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
@@ -10,11 +10,11 @@ import { map, retry } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class PokeService {
-  // pokemonObservable = new Subject<Pokemon[]>();
-  private pokemon;
-  // selectedFilas: Array<Pokemon> = [];
+  // private pokemon; // ?
   url = environment.url;
-  imgUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
+  // pokemonObservable = new Subject<Pokemon[]>();
+  // selectedFilas: Array<Pokemon> = [];
+  imgurl = environment.imgurl;
   index: number;
   constructor(
     private router: Router,
@@ -50,11 +50,11 @@ export class PokeService {
     return des;
   }
   getIcon(i: number) {
-    return this.imgUrl + i + '.png';
+    return this.imgurl + i + '.png';
   }
-  setPokeDetails(i: number) {
+  getPokeDetails(i) {
     this.index = i;
-    const details = this.http.get(`${this.url}/pokemon/${i}/`)
+    const details = this.http.get(`${this.url}/pokemon/${this.index}/`)
     .pipe(
       map(poke => poke)
     );
@@ -63,13 +63,6 @@ export class PokeService {
   getIndex() {
     return this.index;
   }
-  // addPokemon(poke: Pokemon) {
-  //   poke.imagen = "../../../assets/images/png/pokemon/" + poke.pokemon + ".png";
-  //   poke.tipo = "../../../assets/images/png/tipos/" + poke.tipo + ".png";
-  //   this.pokemon.push(poke);
-  //   this.pokemonObservable.next(this.pokemon.slice());
-  //   this.router.navigate(["/pokemon"]);
-  // }
   addSeleccion(selec) {
     // this.selectedFilas = selec;
   }
