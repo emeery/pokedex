@@ -18,12 +18,9 @@ export class SuperModalComponent implements OnInit {
     private pokeServicio: PokeService
   ) {}
   ngOnInit() {
-    this.getI();
+    this.index = this.pokeServicio.getIndex();
     this.getDetails();
     this.getDes();
-  }
-  getI() {
-    this.index = this.pokeServicio.getIndex();
   }
   getDes() {
     this.pokeServicio.getDescription(this.index)

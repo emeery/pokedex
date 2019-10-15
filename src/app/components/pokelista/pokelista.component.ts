@@ -25,6 +25,7 @@ export class PokelistaComponent implements OnInit, OnDestroy {
     public dlg: MatDialog
   ) {}
   ngOnInit() {
+    // this.setFilter();
     this.setPag();
     this.getPo();
   }
@@ -32,6 +33,9 @@ export class PokelistaComponent implements OnInit, OnDestroy {
     this.dataSource.paginator = this.paginacion;
     this.dataSource.paginator._intl.itemsPerPageLabel = 'Pokémon por Pagina';
   }
+  // setFilter() {
+  //   this.dataSource.filterPredicate = (dt: Element, fltr: string) => dt.;
+  // }
   getPo() {
     this.pokeServicio.getP().subscribe( (res) => {
       this.pokemon = res.pokemon;
@@ -41,9 +45,9 @@ export class PokelistaComponent implements OnInit, OnDestroy {
       // setTimeout(() => {  });
     });
   }
-  getPokeD(i: number) {
-    this.index = i;
-    this.pokeServicio.getPokeDetails(this.index);
+  getPokeDetails(i: number) {
+
+    this.pokeServicio.getPokeDetails(i);
     this.openPokemon();
   }
   makeFiltro(s: string) {

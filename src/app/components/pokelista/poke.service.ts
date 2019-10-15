@@ -29,8 +29,9 @@ export class PokeService {
         return {
           pokemon: pk.map((pokem, i) => {
             return {
+              id: ++i,
               pokemon: pokem.name,
-              icono: this.getIcon(i + 1),
+              icono: this.getIcon(i),
               url: pokem.url,
             };
           })
@@ -40,7 +41,6 @@ export class PokeService {
     return get;
   }
   getDescription(i: number) {
-    console.log(i );
     const des = this.http.get(`${this.url}/pokemon-species/${i}`)
     .pipe(
       map(poke => {
