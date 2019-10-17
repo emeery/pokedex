@@ -19,7 +19,7 @@ export class PokeService {
   constructor(
     private router: Router,
     private http: HttpClient) {}
-  getP() {
+  getPokemon() {
     const get = this.http.get(`${this.url}/pokemon?limit=151`) // 1st g.
     .pipe(
       map(res => {
@@ -49,24 +49,32 @@ export class PokeService {
     );
     return des;
   }
-  getIcon(i: number) {
-    return this.imgurl + i + '.png';
-  }
   getPokeDetails(i) {
     this.index = i;
+    console.log(this.index);
     const details = this.http.get(`${this.url}/pokemon/${this.index}/`)
     .pipe(
       map(poke => poke)
     );
     return details;
   }
+  getFilter(busqueda) {
+    const b = this.http.get(`${this.url}/pokemon/${busqueda}`)
+    .pipe(map(poke => {
+      return poke ;
+    }));
+    return b;
+  }
   getIndex() {
     return this.index;
   }
-  addSeleccion(selec) {
-    // this.selectedFilas = selec;
+  getIcon(i: number) {
+    return this.imgurl + i + '.png';
   }
-  getSeleccion() {
-    // return this.selectedFilas;
-  }
+  // addSeleccion(selec) {
+  //   // this.selectedFilas = selec;
+  // }
+  // getSeleccion() {
+  //   // return this.selectedFilas;
+  // }
 }

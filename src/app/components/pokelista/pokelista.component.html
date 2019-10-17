@@ -13,7 +13,7 @@
                 <ng-container matColumnDef="id">
                     <th mat-header-cell *matHeaderCellDef>ID</th>
                     <td mat-cell *matCellDef="let element;let i = index;">
-                        {{ (i+1) + (pagi.pageIndex * pagi.pageSize )}}
+                        {{ (element.id) }}
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="pokemon">
@@ -36,7 +36,7 @@
                     <th style="padding-right: 50px;" mat-header-cell *matHeaderCellDef>
                         Detalles
                     </th>
-                    <td (click)="getPokeDetails((i + 1) + (pagi.pageIndex * pagi.pageSize ))" id="superball" style="padding-left: 50px;cursor: pointer;" mat-cell *matCellDef="let element; let i = index;">
+                    <td (click)="getPokeDetails(element.id)" id="superball" style="padding-left: 50px;cursor: pointer;" mat-cell *matCellDef="let element; let i = index;">
                         <img [src]="superball" />
                     </td>
                 </ng-container>

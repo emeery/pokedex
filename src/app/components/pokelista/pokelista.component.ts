@@ -18,30 +18,26 @@ export class PokelistaComponent implements OnInit, OnDestroy {
   totalPoke: number;
   pokePorPagina = 5;
   paginaActual = 1;
+  i: number;
   @ViewChild(MatPaginator, {static: true}) paginacion: MatPaginator;
   constructor(
     private pokeServicio: PokeService,
     public dlg: MatDialog
   ) {}
   ngOnInit() {
-    // this.setFilter();
     this.setPag();
-    this.getPo();
+    this.getPokemon();
   }
   setPag() {
     this.dataSource.paginator = this.paginacion;
     this.dataSource.paginator._intl.itemsPerPageLabel = 'Pokémon por Pagina';
   }
-  // setFilter() {
-  //   this.dataSource.filterPredicate = (dt: Element, fltr: string) => dt.;
-  // }
-  getPo() {
-    this.pokeServicio.getP().subscribe( (res) => {
+  getPokemon() {
+    this.pokeServicio.getPokemon().subscribe( (res) => {
       this.pokemon = res.pokemon;
       this.totalPoke = this.pokemon.length;
       this.dataSource.data = this.pokemon;
       this.dataSource.paginator = this.paginacion;
-      // setTimeout(() => {  });
     });
   }
   getPokeDetails(i: number) {
@@ -51,11 +47,10 @@ export class PokelistaComponent implements OnInit, OnDestroy {
   makeFiltro(s: string) {
     s = s.trim().toLowerCase();
     this.dataSource.filter = s;
+    this.pokeServicio.getFilter(s).subscribe(res => {
+      this.dataSource.filter = res[`name`];
+    });
   }
-  // onChangePagina(pagD: PageEvent) {
-  //   console.log(pagD);
-  //   // this.pokeServicio.getPokeDetails(this.pokePorPagina);
-  // }
 
   masterToggle(ref) {
     // console.log(this.isSomeSelected());
