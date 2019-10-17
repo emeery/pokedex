@@ -45,7 +45,6 @@ export class PokelistaComponent implements OnInit, OnDestroy {
     });
   }
   getPokeDetails(i: number) {
-    console.log('ju', i);
     this.pokeServicio.getPokeDetails(i);
     this.openPokemon();
   }
