@@ -18,7 +18,6 @@ export class PokelistaComponent implements OnInit, OnDestroy {
   totalPoke: number;
   pokePorPagina = 5;
   paginaActual = 1;
-  index: number;
   @ViewChild(MatPaginator, {static: true}) paginacion: MatPaginator;
   constructor(
     private pokeServicio: PokeService,
@@ -46,7 +45,7 @@ export class PokelistaComponent implements OnInit, OnDestroy {
     });
   }
   getPokeDetails(i: number) {
-
+    console.log('ju', i);
     this.pokeServicio.getPokeDetails(i);
     this.openPokemon();
   }

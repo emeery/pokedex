@@ -36,7 +36,7 @@
                     <th style="padding-right: 50px;" mat-header-cell *matHeaderCellDef>
                         Detalles
                     </th>
-                    <td (click)="getPokeDetails((element.id) + (pagi.pageIndex * pagi.pageSize ))" id="superball" style="padding-left: 50px;cursor: pointer;" mat-cell *matCellDef="let element; let i = index;">
+                    <td (click)="getPokeDetails((i + 1) + (pagi.pageIndex * pagi.pageSize ))" id="superball" style="padding-left: 50px;cursor: pointer;" mat-cell *matCellDef="let element; let i = index;">
                         <img [src]="superball" />
                     </td>
                 </ng-container>
