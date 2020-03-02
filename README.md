@@ -1,4 +1,3 @@
 # Pokedex
-## Pokedex por Gerardo Bautista con Angular 7.3.8.
-### . 
+##  Gerardo Bautista / Angular 7.3.8.
 
